@@ -1,11 +1,31 @@
+import Menu from '../Menu'
+import Categories from '../components/Categories'
 import Header from '../components/Header'
-import { Container } from './styles'
+import {
+  CategoriesContainer,
+  Container,
+  Footer,
+  FooterContainer,
+  MenuContainer
+} from './styles'
 
 const Main = () => {
   return (
-    <Container>
-      <Header />
-    </Container>
+    <>
+      <Container>
+        <Header />
+        <CategoriesContainer>
+          <Categories />
+        </CategoriesContainer>
+        <MenuContainer>
+          <Menu />
+        </MenuContainer>
+      </Container>
+
+      <Footer>
+        <FooterContainer></FooterContainer>
+      </Footer>
+    </>
   )
 }
 
