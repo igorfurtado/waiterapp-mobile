@@ -22,7 +22,6 @@ const Cart = () => {
       data={cartItems}
       keyExtractor={(cartItem) => cartItem.product._id}
       showsVerticalScrollIndicator={false}
-      style={{ marginBottom: 8 }}
       renderItem={({ item: cartItem }) => {
         return (
           <Item>
