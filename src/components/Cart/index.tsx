@@ -18,7 +18,7 @@ import {
 } from './styles'
 
 const Cart = () => {
-  const { cartItems } = useCartItemsStore()
+  const { cartItems, handleAddToCart } = useCartItemsStore()
 
   return (
     <>
@@ -58,7 +58,10 @@ const Cart = () => {
                   </ProductDetails>
                 </ProductContainer>
                 <Actions>
-                  <TouchableOpacity style={{ marginRight: 20 }}>
+                  <TouchableOpacity
+                    style={{ marginRight: 20 }}
+                    onPress={() => handleAddToCart(cartItem.product)}
+                  >
                     <PlusCircle />
                   </TouchableOpacity>
 
