@@ -5,8 +5,7 @@ import styled from 'styled-components/native'
 export const styles = StyleSheet.create({
   buttonWrapper: {
     overflow: 'hidden',
-    borderRadius: 8,
-    width: '100%'
+    borderRadius: 8
   },
   buttonActive: {
     opacity: Platform.OS === 'ios' ? 0.7 : 1
