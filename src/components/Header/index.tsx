@@ -1,5 +1,6 @@
 import { TouchableOpacity } from 'react-native'
 import { colors } from 'src/components/Main/references'
+import { useCartItemsStore } from 'src/stores/cart-items-store'
 import {
   useHandleTableNumber,
   useTableNumber
@@ -10,6 +11,12 @@ import { Container, Content, OrderHeader, Table } from './styles'
 export const Header = () => {
   const selectedTable = useTableNumber()
   const handleSelectTable = useHandleTableNumber()
+  const { handleClearCart } = useCartItemsStore()
+
+  const handleCancelOrder = () => {
+    handleSelectTable('')
+    handleClearCart()
+  }
 
   return (
     <Container>
@@ -29,7 +36,7 @@ export const Header = () => {
             <Text size={24} weight='600'>
               Pedido
             </Text>
-            <TouchableOpacity onPress={() => handleSelectTable('')}>
+            <TouchableOpacity onPress={handleCancelOrder}>
               <Text weight='600' size={14} color={colors.primary}>
                 cancelar pedido
               </Text>

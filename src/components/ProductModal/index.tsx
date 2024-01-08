@@ -1,6 +1,8 @@
 import { FlatList, Modal } from 'react-native'
 import { useCartItemsStore } from 'src/stores/cart-items-store'
 import { useHandleOpenProductModal } from 'src/stores/product-modal-store'
+import { useHandleOpenTableModal } from 'src/stores/table-modal-store'
+import { useTableNumber } from 'src/stores/table-number-store'
 import { formatCurrency } from 'src/utils/formatCurrency'
 import Button from '../Button'
 import { Close } from '../Icons/Close'
@@ -26,9 +28,15 @@ type ProductModalProps = {
 
 export const ProductModal = ({ visible, product }: ProductModalProps) => {
   const handleProductModal = useHandleOpenProductModal()
+  const selectedTable = useTableNumber()
+  const handleTableModal = useHandleOpenTableModal()
   const { handleAddToCart } = useCartItemsStore()
 
   const addToCart = (product: IProduct) => {
+    if (!selectedTable) {
+      handleTableModal(true)
+    }
+
     handleAddToCart(product)
     handleProductModal(false)
   }

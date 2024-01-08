@@ -18,7 +18,8 @@ import {
 } from './styles'
 
 const Cart = () => {
-  const { cartItems, handleAddToCart } = useCartItemsStore()
+  const { cartItems, handleAddToCart, handleRemoveFromCard } =
+    useCartItemsStore()
 
   const total = cartItems.reduce((accumulator, cartItem) => {
     return accumulator + cartItem.quantity * cartItem.product.price
@@ -69,7 +70,9 @@ const Cart = () => {
                     <PlusCircle />
                   </TouchableOpacity>
 
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => handleRemoveFromCard(cartItem.product)}
+                  >
                     <MinusCircle />
                   </TouchableOpacity>
                 </Actions>

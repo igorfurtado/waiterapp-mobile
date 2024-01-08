@@ -4,15 +4,16 @@ import { create } from 'zustand'
 
 export type CartItemsProps = {
   cartItems: CartItem[]
-  handleCartItems: (cartItems: CartItem[]) => void
+  handleClearCart: () => void
   handleAddToCart: (product: IProduct) => void
+  handleRemoveFromCard: (product: IProduct) => void
 }
 
 const useStore = create<CartItemsProps>((set) => ({
   cartItems: [],
-  handleCartItems: (cartItems: CartItem[]) => {
+  handleClearCart: () => {
     set({
-      cartItems
+      cartItems: []
     })
   },
   handleAddToCart: (product: IProduct) => {
@@ -40,6 +41,30 @@ const useStore = create<CartItemsProps>((set) => ({
         }
         return { cartItems: newCartItems }
       }
+    })
+  },
+  handleRemoveFromCard: (product: IProduct) => {
+    set((state) => {
+      const itemIndex = state.cartItems.findIndex(
+        (cartItem) => cartItem.product._id === product._id
+      )
+
+      const item = state.cartItems[itemIndex]
+      const newCartItems = [...state.cartItems]
+
+      if (item.quantity === 1) {
+        const filteredArray = newCartItems.filter(
+          (cartItem) => cartItem.product._id !== item.product._id
+        )
+
+        return { cartItems: filteredArray }
+      }
+
+      newCartItems[itemIndex] = {
+        ...item,
+        quantity: item.quantity - 1
+      }
+      return { cartItems: newCartItems }
     })
   }
 }))
