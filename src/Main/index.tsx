@@ -1,4 +1,5 @@
 import Menu from 'src/Menu'
+import Button from 'src/components/Button'
 import Categories from 'src/components/Categories'
 import Header from 'src/components/Header'
 import {
@@ -23,7 +24,9 @@ const Main = () => {
       </Container>
 
       <Footer>
-        <FooterContainer></FooterContainer>
+        <FooterContainer>
+          <Button>Botão</Button>
+        </FooterContainer>
       </Footer>
     </>
   )
