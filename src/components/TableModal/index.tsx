@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { Modal, TouchableOpacity } from 'react-native'
 import { colors } from 'src/Main/references'
 import Button from '../Button'
 import { Close } from '../Icons/Close'
 import { Text } from '../Text'
-import { useHandleOpenTableModal } from '../store/open-table-modal'
+import { useHandleOpenTableModal } from '../stores/open-table-modal-store'
+import { useHandleTableNumber } from '../stores/table-number-store'
 import useTableModal from './hooks/useTableModal'
 import { Form, Header, Input, ModalBody, Overlay } from './styles'
 
@@ -12,8 +14,16 @@ type TableModalProps = {
 }
 
 export const TableModal = ({ visible }: TableModalProps) => {
+  const [tableNumber, setTableNumber] = useState<string>('')
+
   const { isAndroid } = useTableModal()
   const handleOpenTableModal = useHandleOpenTableModal()
+  const handleTableNumber = useHandleTableNumber()
+
+  const handleSave = () => {
+    handleTableNumber(tableNumber)
+    handleOpenTableModal(false)
+  }
 
   return (
     <Modal transparent visible={visible} animationType='fade'>
@@ -30,8 +40,11 @@ export const TableModal = ({ visible }: TableModalProps) => {
               placeholder='Número da mesa'
               placeholderTextColor={colors.dark}
               keyboardType='number-pad'
+              onChangeText={setTableNumber}
             />
-            <Button onPress={() => alert('Salvar')}>Salvar</Button>
+            <Button onPress={handleSave} disabled={tableNumber.length === 0}>
+              Salvar
+            </Button>
           </Form>
         </ModalBody>
       </Overlay>

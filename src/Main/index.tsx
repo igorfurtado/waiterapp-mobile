@@ -6,7 +6,8 @@ import TableModal from 'src/components/TableModal'
 import {
   useHandleOpenTableModal,
   useOpenTableModal
-} from 'src/components/store/open-table-modal'
+} from 'src/components/stores/open-table-modal-store'
+import { useTableNumber } from 'src/components/stores/table-number-store'
 import {
   CategoriesContainer,
   Container,
@@ -17,6 +18,7 @@ import {
 
 const Main = () => {
   const openTableModal = useOpenTableModal()
+  const selectedTable = useTableNumber()
   const handleOpenTableModal = useHandleOpenTableModal()
 
   return (
@@ -33,7 +35,9 @@ const Main = () => {
 
       <Footer>
         <FooterContainer>
-          <Button onPress={() => handleOpenTableModal(true)}>Botão</Button>
+          {!selectedTable && (
+            <Button onPress={() => handleOpenTableModal(true)}>Botão</Button>
+          )}
         </FooterContainer>
       </Footer>
 
