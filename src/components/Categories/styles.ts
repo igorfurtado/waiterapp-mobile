@@ -1,5 +1,5 @@
+import { colors } from 'src/Main/references'
 import styled from 'styled-components/native'
-import { colors } from '../../Main/references'
 
 export const Category = styled.View`
   align-items: center;

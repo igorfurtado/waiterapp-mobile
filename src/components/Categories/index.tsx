@@ -1,5 +1,5 @@
 import { FlatList } from 'react-native'
-import { categories } from '../../mocks/categories'
+import { categories } from 'src/mocks/categories'
 import { Text } from '../Text'
 import { Category, Icon } from './styles'
 

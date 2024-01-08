@@ -1,6 +1,6 @@
-import Menu from '../Menu'
-import Categories from '../components/Categories'
-import Header from '../components/Header'
+import Menu from 'src/Menu'
+import Categories from 'src/components/Categories'
+import Header from 'src/components/Header'
 import {
   CategoriesContainer,
   Container,
