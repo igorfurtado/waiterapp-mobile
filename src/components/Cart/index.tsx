@@ -1,5 +1,5 @@
 import { FlatList, TouchableOpacity } from 'react-native'
-import { useCartItems } from 'src/stores/cart-items-store'
+import { useCartItemsStore } from 'src/stores/cart-items-store'
 import { formatCurrency } from 'src/utils/formatCurrency'
 import Button from '../Button'
 import { MinusCircle } from '../Icons/MinusCircle'
@@ -18,7 +18,7 @@ import {
 } from './styles'
 
 const Cart = () => {
-  const cartItems = useCartItems()
+  const { cartItems } = useCartItemsStore()
 
   return (
     <>

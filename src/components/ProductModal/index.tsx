@@ -1,4 +1,5 @@
 import { FlatList, Modal } from 'react-native'
+import { useCartItemsStore } from 'src/stores/cart-items-store'
 import { useHandleOpenProductModal } from 'src/stores/product-modal-store'
 import { formatCurrency } from 'src/utils/formatCurrency'
 import Button from '../Button'
@@ -25,6 +26,12 @@ type ProductModalProps = {
 
 export const ProductModal = ({ visible, product }: ProductModalProps) => {
   const handleProductModal = useHandleOpenProductModal()
+  const { handleAddToCart } = useCartItemsStore()
+
+  const addToCart = (product: IProduct) => {
+    handleAddToCart(product)
+    handleProductModal(false)
+  }
 
   if (!product) {
     return null
@@ -97,7 +104,9 @@ export const ProductModal = ({ visible, product }: ProductModalProps) => {
             </Text>
           </PriceContainer>
 
-          <Button>Adicionar ao pedido</Button>
+          <Button onPress={() => addToCart(product)}>
+            Adicionar ao pedido
+          </Button>
         </FooterContainer>
       </Footer>
     </Modal>

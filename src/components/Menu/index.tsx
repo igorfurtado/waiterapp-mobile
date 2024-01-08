@@ -4,10 +4,13 @@ import { PlusCircle } from 'src/components/Icons/PlusCircle'
 import { colors } from 'src/components/Main/references'
 import { Text } from 'src/components/Text'
 import { products } from 'src/mocks/products'
+import { useCartItemsStore } from 'src/stores/cart-items-store'
 import {
   useHandleOpenProductModal,
   useOpenProductModal
 } from 'src/stores/product-modal-store'
+import { useHandleOpenTableModal } from 'src/stores/table-modal-store'
+import { useTableNumber } from 'src/stores/table-number-store'
 import { formatCurrency } from 'src/utils/formatCurrency'
 import ProductModal from '../ProductModal'
 import { IProduct } from './model/data/product'
@@ -21,12 +24,25 @@ import {
 
 export const Menu = () => {
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null)
+
+  const selectedTable = useTableNumber()
   const showProductModal = useOpenProductModal()
+
+  const { handleAddToCart } = useCartItemsStore()
+  const handleTableModal = useHandleOpenTableModal()
   const handleProductModal = useHandleOpenProductModal()
 
   const handleOpenModal = (product: IProduct | null) => {
     handleProductModal(true)
     setSelectedProduct(product)
+  }
+
+  const addToCart = (product: IProduct) => {
+    if (!selectedTable) {
+      handleTableModal(true)
+    }
+
+    handleAddToCart(product)
   }
 
   return (
@@ -58,7 +74,7 @@ export const Menu = () => {
                   {formatCurrency(product.price)}
                 </Text>
               </ProductDetails>
-              <AddToCartButton>
+              <AddToCartButton onPress={() => addToCart(product)}>
                 <PlusCircle />
               </AddToCartButton>
             </Product>
