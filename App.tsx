@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font'
 import 'intl'
 import 'intl/locale-data/jsonp/pt-BR'
-import Main from './src/Main'
+import Main from './src/components/Main'
 
 export default function App() {
   const [isFontLoaded] = useFonts({

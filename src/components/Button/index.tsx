@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { PressableProps, View } from 'react-native'
-import { colors } from 'src/Main/references'
+import { colors } from 'src/components/Main/references'
 import { Text } from '../Text'
 import { Container, styles } from './styles'
 

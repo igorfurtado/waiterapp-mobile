@@ -1,13 +1,13 @@
-import Menu from 'src/Menu'
 import Button from 'src/components/Button'
 import Categories from 'src/components/Categories'
 import Header from 'src/components/Header'
+import Menu from 'src/components/Menu'
 import TableModal from 'src/components/TableModal'
 import {
   useHandleOpenTableModal,
   useOpenTableModal
-} from 'src/components/stores/open-table-modal-store'
-import { useTableNumber } from 'src/components/stores/table-number-store'
+} from 'src/stores/table-modal-store'
+import { useTableNumber } from 'src/stores/table-number-store'
 import {
   CategoriesContainer,
   Container,
