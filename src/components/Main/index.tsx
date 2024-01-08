@@ -3,11 +3,8 @@ import Categories from 'src/components/Categories'
 import Header from 'src/components/Header'
 import Menu from 'src/components/Menu'
 import TableModal from 'src/components/TableModal'
-import {
-  useHandleOpenTableModal,
-  useOpenTableModal
-} from 'src/stores/table-modal-store'
-import { useTableNumber } from 'src/stores/table-number-store'
+import Cart from '../Cart'
+import useMainData from './hooks/use-main-data'
 import {
   CategoriesContainer,
   Container,
@@ -17,9 +14,7 @@ import {
 } from './styles'
 
 const Main = () => {
-  const openTableModal = useOpenTableModal()
-  const selectedTable = useTableNumber()
-  const handleOpenTableModal = useHandleOpenTableModal()
+  const { openTableModal, selectedTable, handleOpenTableModal } = useMainData()
 
   return (
     <>
@@ -35,8 +30,10 @@ const Main = () => {
 
       <Footer>
         <FooterContainer>
-          {!selectedTable && (
+          {!selectedTable ? (
             <Button onPress={() => handleOpenTableModal(true)}>Botão</Button>
+          ) : (
+            <Cart />
           )}
         </FooterContainer>
       </Footer>
