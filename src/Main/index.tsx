@@ -2,6 +2,11 @@ import Menu from 'src/Menu'
 import Button from 'src/components/Button'
 import Categories from 'src/components/Categories'
 import Header from 'src/components/Header'
+import TableModal from 'src/components/TableModal'
+import {
+  useHandleOpenTableModal,
+  useOpenTableModal
+} from 'src/components/store/open-table-modal'
 import {
   CategoriesContainer,
   Container,
@@ -11,6 +16,9 @@ import {
 } from './styles'
 
 const Main = () => {
+  const openTableModal = useOpenTableModal()
+  const handleOpenTableModal = useHandleOpenTableModal()
+
   return (
     <>
       <Container>
@@ -25,9 +33,11 @@ const Main = () => {
 
       <Footer>
         <FooterContainer>
-          <Button>Botão</Button>
+          <Button onPress={() => handleOpenTableModal(true)}>Botão</Button>
         </FooterContainer>
       </Footer>
+
+      <TableModal visible={openTableModal} />
     </>
   )
 }
