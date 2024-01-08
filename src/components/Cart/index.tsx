@@ -20,6 +20,10 @@ import {
 const Cart = () => {
   const { cartItems, handleAddToCart } = useCartItemsStore()
 
+  const total = cartItems.reduce((accumulator, cartItem) => {
+    return accumulator + cartItem.quantity * cartItem.product.price
+  }, 0)
+
   return (
     <>
       {cartItems.length > 0 && (
@@ -81,7 +85,7 @@ const Cart = () => {
             <>
               <Text color={colors.dark}>Total</Text>
               <Text size={20} weight='600'>
-                R$120,00
+                {formatCurrency(total)}
               </Text>
             </>
           ) : (
