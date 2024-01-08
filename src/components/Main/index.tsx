@@ -31,7 +31,9 @@ const Main = () => {
       <Footer>
         <FooterContainer>
           {!selectedTable ? (
-            <Button onPress={() => handleOpenTableModal(true)}>Botão</Button>
+            <Button onPress={() => handleOpenTableModal(true)}>
+              Novo Pedido
+            </Button>
           ) : (
             <Cart />
           )}
