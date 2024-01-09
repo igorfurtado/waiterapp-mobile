@@ -2,10 +2,13 @@ import { FlatList, TouchableOpacity } from 'react-native'
 import { useCartItemsStore } from 'src/stores/cart-items-store'
 import { formatCurrency } from 'src/utils/formatCurrency'
 import Button from '../Button'
+import ConfirmOrderModal from '../ConfirmOrderModal'
 import { MinusCircle } from '../Icons/MinusCircle'
 import { PlusCircle } from '../Icons/PlusCircle'
 import { colors } from '../Main/references'
 import { Text } from '../Text'
+
+import { useCallback, useState } from 'react'
 import {
   Actions,
   Image,
@@ -18,12 +21,17 @@ import {
 } from './styles'
 
 const Cart = () => {
+  const [confirmOrderModal, setConfirmOrderModal] = useState<boolean>(false)
   const { cartItems, handleAddToCart, handleRemoveFromCard } =
     useCartItemsStore()
 
   const total = cartItems.reduce((accumulator, cartItem) => {
     return accumulator + cartItem.quantity * cartItem.product.price
   }, 0)
+
+  const handleConfirmOrder = useCallback((state: boolean) => {
+    setConfirmOrderModal(state)
+  }, [])
 
   return (
     <>
@@ -96,8 +104,18 @@ const Cart = () => {
           )}
         </TotalContainer>
 
-        <Button disabled={cartItems.length === 0}>Confirmar pedido</Button>
+        <Button
+          disabled={cartItems.length === 0}
+          onPress={() => handleConfirmOrder(true)}
+        >
+          Confirmar pedido
+        </Button>
       </Summary>
+
+      <ConfirmOrderModal
+        visible={confirmOrderModal}
+        handleCloseModal={() => handleConfirmOrder(false)}
+      />
     </>
   )
 }
