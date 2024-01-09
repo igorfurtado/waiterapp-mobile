@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { PressableProps, View } from 'react-native'
+import { ActivityIndicator, PressableProps, View } from 'react-native'
 import { colors } from 'src/components/Main/references'
 import { Text } from '../Text'
 import { Container, styles } from './styles'
@@ -7,19 +7,29 @@ import { Container, styles } from './styles'
 type ButtonProps = {
   children: ReactNode
   disabled?: boolean
+  loading?: boolean
 } & PressableProps
 
-const Button = ({ children, disabled = false, ...props }: ButtonProps) => {
+const Button = ({
+  children,
+  disabled = false,
+  loading = false,
+  ...props
+}: ButtonProps) => {
   return (
     <View style={styles.buttonWrapper}>
       <Container
-        disabled={disabled}
+        disabled={disabled || loading}
         style={({ pressed }) => [pressed && styles.buttonActive]}
         {...props}
       >
-        <Text weight='600' color={colors.light}>
-          {children}
-        </Text>
+        {!loading ? (
+          <Text weight='600' color={colors.light}>
+            {children}
+          </Text>
+        ) : (
+          <ActivityIndicator color={colors.light} />
+        )}
       </Container>
     </View>
   )

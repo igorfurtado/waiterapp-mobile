@@ -27,3 +27,9 @@ export const Footer = styled.View`
   padding: 16px 24px;
   background-color: ${colors.light};
 `
+
+export const CenteredContainer = styled.View`
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+`

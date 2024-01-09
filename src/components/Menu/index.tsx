@@ -3,7 +3,6 @@ import { FlatList } from 'react-native'
 import { PlusCircle } from 'src/components/Icons/PlusCircle'
 import { colors } from 'src/components/Main/references'
 import { Text } from 'src/components/Text'
-import { products } from 'src/mocks/products'
 import { useCartItemsStore } from 'src/stores/cart-items-store'
 import {
   useHandleOpenProductModal,
@@ -22,7 +21,11 @@ import {
   Separator
 } from './styles'
 
-export const Menu = () => {
+type MenuProps = {
+  products: IProduct[]
+}
+
+export const Menu = ({ products }: MenuProps) => {
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null)
 
   const selectedTable = useTableNumber()

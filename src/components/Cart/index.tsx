@@ -21,6 +21,7 @@ import {
 } from './styles'
 
 const Cart = () => {
+  const [loading, setLoading] = useState<boolean>(false)
   const [confirmOrderModal, setConfirmOrderModal] = useState<boolean>(false)
   const { cartItems, handleAddToCart, handleRemoveFromCard } =
     useCartItemsStore()
@@ -107,6 +108,7 @@ const Cart = () => {
         <Button
           disabled={cartItems.length === 0}
           onPress={() => handleConfirmOrder(true)}
+          loading={loading}
         >
           Confirmar pedido
         </Button>
