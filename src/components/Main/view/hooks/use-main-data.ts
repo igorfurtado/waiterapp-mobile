@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ICategory } from 'src/components/Categories/model/data/category'
 import { IProduct } from 'src/components/Menu/model/data/product'
-import { categories as mockCategories } from 'src/mocks/categories'
 import { products as mockProducts } from 'src/mocks/products'
 import {
   useHandleOpenTableModal,
@@ -14,9 +13,7 @@ import PresenterImpl from '../../presenter'
 export const useMainData = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [products, setProducts] = useState<IProduct[]>(mockProducts)
-  const [categories, setCategories] = useState<ICategory[]>(mockCategories)
-
-  console.log(categories, 'categories')
+  const [categories, setCategories] = useState<ICategory[]>([])
 
   const dataAccess = new ApiDataAccess()
   const presenter = new PresenterImpl(dataAccess)

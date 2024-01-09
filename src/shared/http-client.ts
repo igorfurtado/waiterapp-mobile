@@ -39,8 +39,6 @@ class HttpClient {
   }: IHttpRequest) {
     const url = `${this._baseEndpointUrl}${urlPath}`
 
-    console.log(url, 'url')
-
     const defaultConfigRequest = this.createDefaultConfigRequest(body, headers)
 
     const configRequest = {

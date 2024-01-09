@@ -1,5 +1,3 @@
-// import { BASE_URL } from '@env'
-
 export const config = {
-  environment: ''
+  environment: process.env.EXPO_PUBLIC_BASE_URL
 } as const
