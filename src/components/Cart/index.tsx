@@ -9,6 +9,8 @@ import { colors } from '../Main/view/references'
 import { Text } from '../Text'
 
 import { useCallback, useState } from 'react'
+import { useTableNumber } from 'src/stores/table-number-store'
+import { ShortOrder } from '../Menu/model/data/order'
 import {
   Actions,
   Image,
@@ -20,11 +22,22 @@ import {
   TotalContainer
 } from './styles'
 
-const Cart = () => {
+type CartProps = {
+  onCreateOrder: ({
+    order,
+    signal
+  }: {
+    order: ShortOrder
+    signal?: AbortSignal | undefined
+  }) => Promise<void>
+}
+
+const Cart = ({ onCreateOrder }: CartProps) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [confirmOrderModal, setConfirmOrderModal] = useState<boolean>(false)
   const { cartItems, handleAddToCart, handleRemoveFromCard } =
     useCartItemsStore()
+  const selectedTable = useTableNumber()
 
   const total = cartItems.reduce((accumulator, cartItem) => {
     return accumulator + cartItem.quantity * cartItem.product.price
@@ -33,6 +46,23 @@ const Cart = () => {
   const handleConfirmOrder = useCallback((state: boolean) => {
     setConfirmOrderModal(state)
   }, [])
+
+  const createOrder = async () => {
+    setLoading(true)
+
+    const payload = {
+      table: selectedTable,
+      products: cartItems.map((cartItem) => ({
+        product: cartItem.product._id,
+        quantity: cartItem.quantity
+      }))
+    }
+
+    await onCreateOrder({ order: payload })
+
+    setLoading(false)
+    setConfirmOrderModal(true)
+  }
 
   return (
     <>
@@ -107,7 +137,7 @@ const Cart = () => {
 
         <Button
           disabled={cartItems.length === 0}
-          onPress={() => handleConfirmOrder(true)}
+          onPress={createOrder}
           loading={loading}
         >
           Confirmar pedido

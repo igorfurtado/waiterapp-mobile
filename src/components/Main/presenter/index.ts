@@ -1,4 +1,5 @@
 import { ICategory } from 'src/components/Categories/model/data/category'
+import { IOrder, ShortOrder } from 'src/components/Menu/model/data/order'
 import { IProduct } from 'src/components/Menu/model/data/product'
 import ApiDataAccess from '../model/infrastructure/service/data-access/api-data-access'
 
@@ -12,6 +13,13 @@ export interface IPresenter {
     signal?: AbortSignal
   }): Promise<IProduct[]>
   getProducts(signal?: AbortSignal): Promise<IProduct[]>
+  createOrder({
+    order,
+    signal
+  }: {
+    order: ShortOrder
+    signal?: AbortSignal
+  }): Promise<IOrder | null>
 }
 
 export default class PresenterImpl implements IPresenter {
@@ -44,6 +52,18 @@ export default class PresenterImpl implements IPresenter {
 
   async getProducts(signal?: AbortSignal | undefined): Promise<IProduct[]> {
     const data = await this._apiDataAccess.getProducts(signal)
+
+    return data
+  }
+
+  async createOrder({
+    order,
+    signal
+  }: {
+    order: ShortOrder
+    signal?: AbortSignal | undefined
+  }): Promise<IOrder | null> {
+    const data = await this._apiDataAccess.createOrder({ order, signal })
 
     return data
   }

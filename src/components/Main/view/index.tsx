@@ -28,7 +28,8 @@ const Main = () => {
     categories,
     isProductsLoading,
     handleOpenTableModal,
-    handleSelectCategory
+    handleSelectCategory,
+    handleCreateOrder
   } = useMainData()
 
   return (
@@ -78,7 +79,7 @@ const Main = () => {
               Novo Pedido
             </Button>
           ) : (
-            <Cart />
+            <Cart onCreateOrder={handleCreateOrder}/>
           )}
         </FooterContainer>
       </Footer>

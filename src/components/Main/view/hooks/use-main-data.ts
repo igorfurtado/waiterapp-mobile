@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { ICategory } from 'src/components/Categories/model/data/category'
+import { IOrder, ShortOrder } from 'src/components/Menu/model/data/order'
 import { IProduct } from 'src/components/Menu/model/data/product'
 import {
   useHandleOpenTableModal,
@@ -63,6 +64,22 @@ export const useMainData = () => {
     []
   )
 
+  const handleCreateOrder = useCallback(
+    async ({
+      order,
+      signal
+    }: {
+      order: ShortOrder
+      signal?: AbortSignal | undefined
+    }) => {
+      await presenter.createOrder({
+        order,
+        signal
+      })
+    },
+    []
+  )
+
   return {
     products,
     isProductsLoading,
@@ -71,7 +88,8 @@ export const useMainData = () => {
     openTableModal,
     selectedTable,
     handleOpenTableModal,
-    handleSelectCategory
+    handleSelectCategory,
+    handleCreateOrder
   }
 }
 
