@@ -1,15 +1,30 @@
 import { FlatList } from 'react-native'
 import { Text } from '../../Text'
 import { ICategory } from '../model/data/category'
-import { Category, Icon } from './styles'
 import useCategories from './hooks/useCategories'
+import { Category, Icon } from './styles'
 
 type CategoriesProps = {
   categories: ICategory[]
+  onSelectCategory: ({
+    categoryId,
+    signal
+  }: {
+    categoryId: string
+    signal?: AbortSignal | undefined
+  }) => Promise<void>
 }
 
-export const Categories = ({ categories }: CategoriesProps) => {
+export const Categories = ({
+  categories,
+  onSelectCategory
+}: CategoriesProps) => {
   const { handleSelectCategory, selectedCategory } = useCategories()
+
+  const onPressCategory = (categoryId: string) => {
+    handleSelectCategory(categoryId)
+    onSelectCategory({ categoryId })
+  }
 
   return (
     <FlatList
@@ -22,7 +37,7 @@ export const Categories = ({ categories }: CategoriesProps) => {
         const isSelected = selectedCategory === category._id
 
         return (
-          <Category onPress={() => handleSelectCategory(category._id)}>
+          <Category onPress={() => onPressCategory(category._id)}>
             <Icon>
               <Text opacity={isSelected ? 1 : 0.5}>{category.icon}</Text>
             </Icon>

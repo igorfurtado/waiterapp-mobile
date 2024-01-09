@@ -26,7 +26,8 @@ const Main = () => {
     isLoading,
     products,
     categories,
-    handleOpenTableModal
+    handleOpenTableModal,
+    handleSelectCategory
   } = useMainData()
 
   return (
@@ -36,7 +37,7 @@ const Main = () => {
         {!isLoading ? (
           <>
             <CategoriesContainer>
-              <Categories categories={categories} />
+              <Categories categories={categories} onSelectCategory={handleSelectCategory}/>
             </CategoriesContainer>
             {products.length > 0 ? (
               <MenuContainer>

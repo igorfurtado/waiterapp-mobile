@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ICategory } from 'src/components/Categories/model/data/category'
 import { IProduct } from 'src/components/Menu/model/data/product'
 import {
@@ -39,13 +39,32 @@ export const useMainData = () => {
     return () => controller.abort()
   }, [])
 
+  const handleSelectCategory = useCallback(
+    async ({
+      categoryId,
+      signal
+    }: {
+      categoryId: string
+      signal?: AbortSignal
+    }) => {
+      const response = await presenter.getProductsByCategory({
+        categoryId,
+        signal
+      })
+
+      setProducts(response)
+    },
+    []
+  )
+
   return {
     products,
     categories,
     isLoading,
     openTableModal,
     selectedTable,
-    handleOpenTableModal
+    handleOpenTableModal,
+    handleSelectCategory
   }
 }
 

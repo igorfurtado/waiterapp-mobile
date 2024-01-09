@@ -3,5 +3,12 @@ import { IProduct } from 'src/components/Menu/model/data/product'
 
 export interface DataAccess {
   getCategories(signal?: AbortSignal): Promise<ICategory[]>
+  getProductsByCategory({
+    categoryId,
+    signal
+  }: {
+    categoryId: string
+    signal?: AbortSignal
+  }): Promise<IProduct[]>
   getProducts(signal?: AbortSignal): Promise<IProduct[]>
 }
