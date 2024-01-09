@@ -5,7 +5,7 @@ import Button from '../Button'
 import ConfirmOrderModal from '../ConfirmOrderModal'
 import { MinusCircle } from '../Icons/MinusCircle'
 import { PlusCircle } from '../Icons/PlusCircle'
-import { colors } from '../Main/references'
+import { colors } from '../Main/view/references'
 import { Text } from '../Text'
 
 import { useCallback, useState } from 'react'

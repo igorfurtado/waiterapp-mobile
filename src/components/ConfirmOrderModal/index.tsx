@@ -3,7 +3,7 @@ import { Text } from 'src/components/Text'
 import { useCartItemsStore } from 'src/stores/cart-items-store'
 import { useHandleTableNumber } from 'src/stores/table-number-store'
 import { CheckCircle } from '../Icons/CheckCircle'
-import { colors } from '../Main/references'
+import { colors } from '../Main/view/references'
 import { Container, OkButton } from './styles'
 
 type ConfirmOrderModalProps = {

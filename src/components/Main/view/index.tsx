@@ -1,15 +1,15 @@
 import { ActivityIndicator } from 'react-native'
 import Button from 'src/components/Button'
-import Categories from 'src/components/Categories'
+import Categories from 'src/components/Categories/view'
 import Header from 'src/components/Header'
 import Menu from 'src/components/Menu'
 import TableModal from 'src/components/TableModal'
-import Cart from '../Cart'
+import Cart from '../../Cart'
 import useMainData from './hooks/use-main-data'
 import { colors } from './references'
 
-import { Empty } from '../Icons/Empty'
-import { Text } from '../Text'
+import { Empty } from '../../Icons/Empty'
+import { Text } from '../../Text'
 import {
   CategoriesContainer,
   CenteredContainer,
@@ -36,7 +36,7 @@ const Main = () => {
         {!isLoading ? (
           <>
             <CategoriesContainer>
-              <Categories categories={categories}/>
+              <Categories categories={categories} />
             </CategoriesContainer>
             {products.length > 0 ? (
               <MenuContainer>

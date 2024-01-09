@@ -1,8 +1,8 @@
 import { FlatList } from 'react-native'
-import { Text } from '../Text'
-import useCategories from './hooks/useCategories'
-import { ICategory } from './model/data/category'
+import { Text } from '../../Text'
+import { ICategory } from '../model/data/category'
 import { Category, Icon } from './styles'
+import useCategories from './hooks/useCategories'
 
 type CategoriesProps = {
   categories: ICategory[]

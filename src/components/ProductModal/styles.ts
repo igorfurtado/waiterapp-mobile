@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import { colors } from '../Main/references'
+import { colors } from '../Main/view/references'
 
 export const Image = styled.ImageBackground`
   width: 100%;

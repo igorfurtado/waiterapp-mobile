@@ -1,5 +1,5 @@
 import { Modal, TouchableOpacity } from 'react-native'
-import { colors } from 'src/components/Main/references'
+import { colors } from 'src/components/Main/view/references'
 import Button from '../Button'
 import { Close } from '../Icons/Close'
 import { Text } from '../Text'

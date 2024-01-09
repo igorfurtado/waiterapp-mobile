@@ -6,7 +6,7 @@ import { useTableNumber } from 'src/stores/table-number-store'
 import { formatCurrency } from 'src/utils/formatCurrency'
 import Button from '../Button'
 import { Close } from '../Icons/Close'
-import { colors } from '../Main/references'
+import { colors } from '../Main/view/references'
 import { IProduct } from '../Menu/model/data/product'
 import { Text } from '../Text'
 import {

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FlatList } from 'react-native'
 import { PlusCircle } from 'src/components/Icons/PlusCircle'
-import { colors } from 'src/components/Main/references'
+import { colors } from 'src/components/Main/view/references'
 import { Text } from 'src/components/Text'
 import { useCartItemsStore } from 'src/stores/cart-items-store'
 import {

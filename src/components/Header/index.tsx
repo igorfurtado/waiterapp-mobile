@@ -1,5 +1,5 @@
 import { TouchableOpacity } from 'react-native'
-import { colors } from 'src/components/Main/references'
+import { colors } from 'src/components/Main/view/references'
 import { useCartItemsStore } from 'src/stores/cart-items-store'
 import {
   useHandleTableNumber,

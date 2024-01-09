@@ -1,4 +1,4 @@
-import { colors } from 'src/components/Main/references'
+import { colors } from 'src/components/Main/view/references'
 import styled from 'styled-components/native'
 
 export const Overlay = styled.KeyboardAvoidingView`
