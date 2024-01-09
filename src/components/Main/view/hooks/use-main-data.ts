@@ -11,6 +11,7 @@ import PresenterImpl from '../../presenter'
 
 export const useMainData = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isProductsLoading, setIsProductsLoading] = useState<boolean>(false)
   const [products, setProducts] = useState<IProduct[]>([])
   const [categories, setCategories] = useState<ICategory[]>([])
 
@@ -47,6 +48,8 @@ export const useMainData = () => {
       categoryId: string
       signal?: AbortSignal
     }) => {
+      setIsProductsLoading(true)
+
       const response = categoryId
         ? await presenter.getProductsByCategory({
             categoryId,
@@ -55,12 +58,14 @@ export const useMainData = () => {
         : await presenter.getProducts(signal)
 
       setProducts(response)
+      setIsProductsLoading(false)
     },
     []
   )
 
   return {
     products,
+    isProductsLoading,
     categories,
     isLoading,
     openTableModal,

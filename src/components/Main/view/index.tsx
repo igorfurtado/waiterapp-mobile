@@ -26,6 +26,7 @@ const Main = () => {
     isLoading,
     products,
     categories,
+    isProductsLoading,
     handleOpenTableModal,
     handleSelectCategory
   } = useMainData()
@@ -37,9 +38,17 @@ const Main = () => {
         {!isLoading ? (
           <>
             <CategoriesContainer>
-              <Categories categories={categories} onSelectCategory={handleSelectCategory}/>
+              <Categories
+                categories={categories}
+                onSelectCategory={handleSelectCategory}
+              />
             </CategoriesContainer>
-            {products.length > 0 ? (
+
+            {isProductsLoading ? (
+              <CenteredContainer>
+                <ActivityIndicator color={colors.primary} size='large' />
+              </CenteredContainer>
+            ) : products.length > 0 ? (
               <MenuContainer>
                 <Menu products={products} />
               </MenuContainer>
