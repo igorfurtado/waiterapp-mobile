@@ -22,8 +22,10 @@ export const Categories = ({
   const { handleSelectCategory, selectedCategory } = useCategories()
 
   const onPressCategory = (categoryId: string) => {
-    handleSelectCategory(categoryId)
-    onSelectCategory({ categoryId })
+    const category = selectedCategory === categoryId ? '' : categoryId
+
+    handleSelectCategory(category)
+    onSelectCategory({ categoryId: category })
   }
 
   return (

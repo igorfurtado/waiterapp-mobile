@@ -47,10 +47,12 @@ export const useMainData = () => {
       categoryId: string
       signal?: AbortSignal
     }) => {
-      const response = await presenter.getProductsByCategory({
-        categoryId,
-        signal
-      })
+      const response = categoryId
+        ? await presenter.getProductsByCategory({
+            categoryId,
+            signal
+          })
+        : await presenter.getProducts(signal)
 
       setProducts(response)
     },
