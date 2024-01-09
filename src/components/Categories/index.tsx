@@ -1,10 +1,14 @@
 import { FlatList } from 'react-native'
-import { categories } from 'src/mocks/categories'
 import { Text } from '../Text'
 import useCategories from './hooks/useCategories'
+import { ICategory } from './model/data/category'
 import { Category, Icon } from './styles'
 
-export const Categories = () => {
+type CategoriesProps = {
+  categories: ICategory[]
+}
+
+export const Categories = ({ categories }: CategoriesProps) => {
   const { handleSelectCategory, selectedCategory } = useCategories()
 
   return (
